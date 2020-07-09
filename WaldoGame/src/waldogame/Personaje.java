@@ -29,12 +29,7 @@ public class Personaje implements IPersonaje{
     public String getName() {
         return this.name;
     }
-
-    @Override
-    public void setImage(ImageIcon icon) {
-        this.image = icon;
-    }
-
+    
     @Override
     public ImageIcon getImage() {
         return this.image;
@@ -53,6 +48,11 @@ public class Personaje implements IPersonaje{
     @Override
     public void setBounds(Rectangle pos) {
         this.bounds = bounds;
+    }
+
+    @Override
+    public void setImage(ImageIcon icon) {
+        this.image =  image;
     }
     
 }

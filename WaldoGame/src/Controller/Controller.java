@@ -6,6 +6,8 @@
 package Controller;
 
 import waldogame.Juego;
+import WaldoConfig.WaldoConfig;
+import java.awt.Rectangle;
 
 /**
  *
@@ -25,16 +27,23 @@ public class Controller {//Los labels tienen que tenr un action listener
     }
     
     public void cargarImagenes(){
-        //Usa los archivos de configuracion
+        juego.setImages(WaldoConfig.personajesDisponibles());
     }
     
-    public void getMapCoordinates(){//Using configs
+    public Rectangle getMapCoordinates(){//Using configs
+        return juego.getMapa().getBounds();
+    }
+    
+    public void selectMap(){
+        juego.setMapa(WaldoConfig.loadMap());
+    }
+    
+    public void initGame(){
         
     }
     
-    public void setMapCoordinates(){
-        
-    }
-    
-    
+    //Carga imagenes
+    //Carga mapa
+    //Carga personajes
+    //Empieza el jeugo(Pantalla)
 }

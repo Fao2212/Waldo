@@ -22,6 +22,5 @@ public class Dummy extends Personaje{
     public void charAction() {
         System.out.println("Im Dummy");
     }
-
     
 }

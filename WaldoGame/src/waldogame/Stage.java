@@ -21,5 +21,9 @@ public class Stage {
         this.image = image;
         this.bounds = bounds;
     }
+
+    public Rectangle getBounds() {
+        return this.bounds;
+    }
     
 }

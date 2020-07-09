@@ -5,7 +5,7 @@
  */
 package waldogame;
 
-import java.awt.Point;
+import ImageLoader.ImageLoader;
 import javax.swing.ImageIcon;
 
 /**
@@ -16,12 +16,16 @@ public class Waldo extends Personaje{
     
     public Waldo(String name) {
         this.name = name;
+        imageSet();
     }
     
     @Override
     public void charAction() {
         System.out.println("Im waldo");
     }
-
+    
+    private void imageSet(){
+        setImage(new ImageIcon(ImageLoader.getImage(name+".png")));
+    }
     
 }

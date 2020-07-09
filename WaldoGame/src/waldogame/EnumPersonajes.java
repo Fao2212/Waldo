@@ -10,10 +10,12 @@ package waldogame;
  * @author Fernando Alvarez
  */
 public enum EnumPersonajes {
+    
     WALDO,
     WENDA,
     WOOF,
     ODLAW,
     BARBABLANCA,
-    DUMMY
+    DUMMY;
+     
 }

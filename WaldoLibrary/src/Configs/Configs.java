@@ -15,6 +15,7 @@ import java.util.Properties;
  * @author Fernando Alvarez
  */
 public class Configs extends Properties{
+    
     public static Properties prop = new Properties();
     
     public static void saveProp(String nombre,String valor,String fileName){
@@ -37,5 +38,29 @@ public class Configs extends Properties{
             
         }
         return valor;
+    }
+    
+    public static int valuesSize(String fileName){
+        int size = 0;
+        try{
+            prop.load(new FileInputStream(fileName));
+            size = prop.size();
+        }
+        catch(IOException e){
+            
+        }
+        return size;
+    }
+    
+    public static String getKey(String fileName,int index){
+        String value = "";
+        try{
+            prop.load(new FileInputStream(fileName));
+            value = (String)prop.stringPropertyNames().toArray()[index];
+        }
+        catch(IOException e){
+            
+        }
+        return value;
     }
 }
