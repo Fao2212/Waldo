@@ -21,11 +21,12 @@ public class WaldoConfig {
     
     final static String STAGESPATH = "stagesConfig.txt";//Guarda el path de la imagen como key t el value son sus coordenadas
     final static String CHARPATH = "src/character";//Caambiar esto por un folder donde esten todas las imagenes de los personajes
+    public static WaldoConfig wc = new WaldoConfig();
     
     public static void saveMap(String [] values){//Toma valores de pantalla y el path
         String path = values[0];
         String coordenadas = packMapConfig(values);
-        Configs.saveProp(path, coordenadas, STAGESPATH);
+        Configs.saveProp(path, coordenadas,STAGESPATH);
     }
     
     public static Stage loadMap(){//Crea un mapa
@@ -37,9 +38,17 @@ public class WaldoConfig {
     
     private static String[] unpackMapConfig(){//Con el key aleatorio toma el path y sus coordenadas y lo convierte en un array
         String path = mapSelection();
-        String value = Configs.loadProp(path, STAGESPATH);
+        File file = new File(STAGESPATH);
+        System.out.println("File"+file.getAbsolutePath());
+        String value = Configs.loadProp(path, file.getAbsolutePath());
         String[] values = new String[5];
-        values[0] = path + value.split(",");
+        System.out.println(value);
+        values[0] = path;
+        String[] cord = value.split(",");
+        for (int i = 1; i < 5; i++) {
+            values[i] = cord[i-1];
+        }
+        System.out.println("Values"+values[0]);
         return values;
     } 
     
@@ -66,10 +75,10 @@ public class WaldoConfig {
     public static ImageIcon[] personajesDisponibles(){
         File dir = new File(CHARPATH);
         File [] files = dir.listFiles();
-        ImageIcon [] images = new ImageIcon[files.length];
+        ImageIcon [] images = new ImageIcon[files.length];  
         int cont = 0;
         for (File file : files) {
-            images[cont++] = new ImageIcon(ImageLoader.getImage(file.getPath()));
+            images[cont++] = new ImageIcon(ImageLoader.getImage(file.getAbsolutePath()));
         }
         return images;
     }

@@ -26,4 +26,7 @@ public class Stage {
         return this.bounds;
     }
     
+    public ImageIcon getImage(){
+        return this.image;
+    }
 }

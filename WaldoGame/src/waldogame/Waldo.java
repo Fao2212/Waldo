@@ -6,6 +6,8 @@
 package waldogame;
 
 import ImageLoader.ImageLoader;
+import java.io.File;
+import java.io.FileInputStream;
 import javax.swing.ImageIcon;
 
 /**
@@ -24,8 +26,8 @@ public class Waldo extends Personaje{
         System.out.println("Im waldo");
     }
     
-    private void imageSet(){
-        setImage(new ImageIcon(ImageLoader.getImage(name+".png")));
+    private void imageSet(){//Tengo que arreglar estos path
+        setImage(new ImageIcon(ImageLoader.getImage("C:/Users/ACER/Documents/GitHub/Waldo/WaldoGame/src/Waldo Cahracter/"+name+".png")));
     }
     
 }

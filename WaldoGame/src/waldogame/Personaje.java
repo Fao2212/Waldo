@@ -47,12 +47,12 @@ public class Personaje implements IPersonaje{
 
     @Override
     public void setBounds(Rectangle pos) {
-        this.bounds = bounds;
+        this.bounds = pos;
     }
 
     @Override
     public void setImage(ImageIcon icon) {
-        this.image =  image;
+        this.image =  icon;
     }
     
 }

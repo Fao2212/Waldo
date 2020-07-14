@@ -5,15 +5,17 @@
  */
 package GUI;
 
+import AbstractFactory.IPersonaje;
+import Controller.Controller;
+import java.awt.Color;
+import javax.swing.JLabel;
+
 /**
  *
  * @author Fernando Alvarez
  */
 public class Pantalla extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Pantalla
-     */
+    
     public Pantalla() {
         initComponents();
     }
@@ -38,7 +40,6 @@ public class Pantalla extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblBackGround.setBackground(new java.awt.Color(255, 102, 255));
-        lblBackGround.setOpaque(true);
         lblBackGround.setPreferredSize(new java.awt.Dimension(800, 600));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -119,37 +120,6 @@ public class Pantalla extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Pantalla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Pantalla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Pantalla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Pantalla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Pantalla().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
@@ -160,4 +130,17 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblBackGround;
     // End of variables declaration//GEN-END:variables
+
+    public void setCharacters(Controller controlador) {
+        //lblBackGround.setIcon(controlador.getJuego().getMapa().getImage());
+        for (IPersonaje personaje : controlador.getJuego().getPersonajes()) {
+            LabelPersonaje label = new LabelPersonaje(personaje);
+            label.addMouseListener(controlador);
+            label.setIcon(personaje.getImage());
+            label.setOpaque(false);
+            label.setBackground(new Color(0, 0, 0, 0));
+            label.setBounds(personaje.getBounds());
+            this.jPanel1.add(label);//Agregar a otro componente
+        }
+    }
 }

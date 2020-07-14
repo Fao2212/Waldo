@@ -5,9 +5,11 @@
  */
 package Configs;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 /**
@@ -31,8 +33,9 @@ public class Configs extends Properties{
     public static String loadProp(String nombre,String fileName){
         String valor = "";
         try{
-            prop.load(new FileInputStream(fileName));
-            valor = prop.getProperty(valor);
+            InputStream inputStream = new FileInputStream(fileName);
+            prop.load(inputStream);
+            valor = prop.getProperty(nombre);
         }
         catch(IOException e){
             

@@ -6,7 +6,9 @@
 package ImageLoader;
 
 import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -19,9 +21,11 @@ public class ImageLoader {
     
     public static ImageLoader imageLoader = new ImageLoader();
     
-    public static BufferedImage getImage(String path){
+    public static BufferedImage getImage(String absolutePath){
         try {
-            return ImageIO.read(imageLoader.getClass().getResource(path));
+            System.out.println(absolutePath);
+            InputStream inputStream = new FileInputStream(absolutePath);
+            return ImageIO.read(inputStream);
         } catch (IOException ex) {
             Logger.getLogger(ImageLoader.class.getName()).log(Level.SEVERE, null, ex);
         }

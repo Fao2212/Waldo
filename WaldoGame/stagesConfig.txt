@@ -1,0 +1,2 @@
+#Mon Jul 13 18:02:22 CST 2020
+C\:\\Users\\ACER\\Documents\\GitHub\\Waldo\\WaldoGame\\src\\FondosWaldo\\playa1.png=0,220,800,300

@@ -6,6 +6,8 @@
 package waldogame;
 
 import AbstractFactory.IPersonaje;
+import java.awt.Rectangle;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
 import java.util.Collections;
@@ -22,13 +24,26 @@ public class Juego {
     private WaldosFactory factory;
     private Stage mapa;
     private ImageIcon[] images;
+    private ArrayList<Rectangle> positions;
+    private int SIZEY = 32;
+    private int SIZEX = 32;
 
     public Juego() {
         this.factory = new WaldosFactory();
+        this.positions = new ArrayList<>();
+    }
+    
+    public ImageIcon[] getImages(){
+        return this.images;
+    }
+    
+    public IPersonaje[] getPersonajes(){
+        return this.personajes;
     }
     
     public void initJuego(){
-        setPersonajes();//Esto depende del escenario
+        setPositions();
+        setPersonajes();
     }
     
     private void cargarPersonajes(){
@@ -60,7 +75,7 @@ public class Juego {
     }
     
     private void setPersonajes(){
-        int cantidad = numeroDePersonajes();
+        int cantidad = this.positions.size();
         this.personajes = new IPersonaje[cantidad];
         cargarPersonajes();
     }
@@ -69,7 +84,8 @@ public class Juego {
         List<IPersonaje> list = Arrays.asList(personajes);
         Collections.shuffle(list);
         for (IPersonaje personaje : list) {
-            //Poner en orden respetando las dimensiones
+            System.out.println("Despiching"+this.positions.get(list.indexOf(personaje)));
+            personaje.setBounds(this.positions.get(list.indexOf(personaje)));
         }
     }
 
@@ -82,12 +98,35 @@ public class Juego {
         personaje.setImage(images[rand]);
     }
     
-    private int numeroDePersonajes(){
-        //Usando el tamano de las imagenes y el tamano disponible calcular la cantidad minima de imagenes que entra 
-        return numeroDePersonajes;
+    private void setPositions(){//Usar la cantidad de pos
+        int x,y;
+         x = y = 0;
+        while (isInYAxis(SIZEY*y)) {  
+            System.out.println("Gola");
+            if(!isInXAxis(SIZEX*x)){
+                x = 0;
+                y++;
+            }
+            //Se pasa una de mas la del final
+            positions.add(new Rectangle(SIZEX*x, SIZEY*y, SIZEX, SIZEY));
+            x++;
+        }
+        System.out.println("POOOOOOOOOOOOS"+positions.get(0));
     }
     
     public void setImages(ImageIcon[] images){
         this.images = images;
+    }
+    
+    private boolean isInXAxis(int x){
+       Rectangle mapBounds = this.mapa.getBounds();
+        System.out.println(x < mapBounds.width);
+       return x < mapBounds.width;
+    }
+    
+    private boolean isInYAxis(int y){
+       Rectangle mapBounds = this.mapa.getBounds();
+        System.out.println(y < mapBounds.height);
+       return y < mapBounds.height;
     }
 }

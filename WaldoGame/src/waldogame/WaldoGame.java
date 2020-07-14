@@ -5,6 +5,8 @@
  */
 package waldogame;
 
+import Controller.Controller;
+
 /**
  *
  * @author Fernando Alvarez
@@ -17,8 +19,8 @@ public class WaldoGame {
     public static void main(String[] args) {
         // TODO cargar Waldo
         //Crear pantalla y correr el uego
-        WaldosFactory wf = new WaldosFactory();
-        wf.getInstance(EnumPersonajes.WOOF);
+        Controller controlador = new Controller();
+        controlador.initGame();
     }
     
 }
