@@ -22,11 +22,18 @@ public class Configs extends Properties{
     
     public static void saveProp(String nombre,String valor,String fileName){
         try{
+            try{
+                InputStream inputStream = new FileInputStream(fileName);
+                prop.load(inputStream);
+            }
+            catch(IOException e){
+                System.out.println("Archivo no encontrado");
+            }
             prop.setProperty(nombre,valor);
             prop.store(new FileOutputStream(fileName), null);
         }
         catch(IOException e){
-            
+            System.out.println("Archivo no encontrado");
         }
     }
     

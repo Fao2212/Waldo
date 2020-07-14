@@ -9,7 +9,12 @@ import Configs.Configs;
 import ImageLoader.ImageLoader;
 import java.awt.Rectangle;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import waldogame.Stage;
 
@@ -26,7 +31,8 @@ public class WaldoConfig {
     public static void saveMap(String [] values){//Toma valores de pantalla y el path
         String path = values[0];
         String coordenadas = packMapConfig(values);
-        Configs.saveProp(path, coordenadas,STAGESPATH);
+        File file = new File(STAGESPATH);
+        Configs.saveProp(path, coordenadas,file.getAbsolutePath());
     }
     
     public static Stage loadMap(){//Crea un mapa
@@ -39,16 +45,13 @@ public class WaldoConfig {
     private static String[] unpackMapConfig(){//Con el key aleatorio toma el path y sus coordenadas y lo convierte en un array
         String path = mapSelection();
         File file = new File(STAGESPATH);
-        System.out.println("File"+file.getAbsolutePath());
         String value = Configs.loadProp(path, file.getAbsolutePath());
         String[] values = new String[5];
-        System.out.println(value);
         values[0] = path;
         String[] cord = value.split(",");
         for (int i = 1; i < 5; i++) {
             values[i] = cord[i-1];
         }
-        System.out.println("Values"+values[0]);
         return values;
     } 
     

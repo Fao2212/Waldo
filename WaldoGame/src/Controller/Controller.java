@@ -5,27 +5,30 @@
  */
 package Controller;
 
+import AbstractFactory.IPersonaje;
 import GUI.LabelPersonaje;
 import GUI.Pantalla;
 import waldogame.Juego;
 import WaldoConfig.WaldoConfig;
+import java.awt.Color;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.ImageIcon;
+import waldogame.Waldo;
 
 /**
  *
  * @author Fernando Alvarez
  */
-public class Controller implements MouseListener{//Los labels tienen que tenr un action listener
+public class Controller implements MouseListener,ActionListener{//Los labels tienen que tenr un action listener
     
     Juego juego;
     Pantalla pantalla;
 
     public Controller() {
-        this.juego = new Juego();
-        this.pantalla = new Pantalla();
     }
 
     public Juego getJuego() {
@@ -46,9 +49,8 @@ public class Controller implements MouseListener{//Los labels tienen que tenr un
     
     public void setearImagenes(){//Para la pantalla
         //Meter todas las imagenes del directiorio character
-        ImageIcon[] test = new ImageIcon[1];
-        test[0] = new ImageIcon(ImageLoader.ImageLoader.getImage("C:/Users/ACER/Documents/GitHub/Waldo/WaldoGame/src/Waldo Cahracter/WALDO.png"));
-       juego.setImages(test);
+        ImageIcon[] test = WaldoConfig.personajesDisponibles();
+        juego.setImages(test);
     }
     
     public void pintarPantalla(){
@@ -68,11 +70,14 @@ public class Controller implements MouseListener{//Los labels tienen que tenr un
     }
     
     public void initGame(){
+        this.juego = new Juego();
+        this.pantalla = new Pantalla();
         cargarImagenes();
         selectMap();
         juego.initJuego();
         setearImagenes();
         pintarPantalla();
+        pantalla.agregarListeners(this);
         pantalla.setVisible(true);
     }
 
@@ -80,6 +85,9 @@ public class Controller implements MouseListener{//Los labels tienen que tenr un
     public void mouseClicked(MouseEvent e) {
         LabelPersonaje p = (LabelPersonaje)e.getSource();
         p.personaje.charAction();
+        if(isWaldo(p.personaje)){
+            pintarWaldo(p);
+        }
     }
 
     @Override
@@ -101,4 +109,30 @@ public class Controller implements MouseListener{//Los labels tienen que tenr un
     public void mouseExited(MouseEvent e) {
       
     }
+    
+    private boolean isWaldo(IPersonaje personaje){
+        return personaje.getClass().equals(Waldo.class);
+    }
+    
+    private void pintarWaldo(LabelPersonaje p){
+            p.setBackground(Color.red);
+            p.setOpaque(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        Object source = e.getSource();
+        if(source.equals(pantalla.jButton2)){
+            for (LabelPersonaje label : pantalla.labels) {
+                if(isWaldo(label.personaje)){
+                    pintarWaldo(label);
+                }
+            }
+        }
+        if (source.equals(pantalla.jButton3)) {
+            pantalla.dispose();
+            initGame();
+        }
+    }
+   
 }

@@ -25,8 +25,8 @@ public class Juego {
     private Stage mapa;
     private ImageIcon[] images;
     private ArrayList<Rectangle> positions;
-    private int SIZEY = 32;
-    private int SIZEX = 32;
+    private int SIZEY = 78;
+    private int SIZEX = 40;
 
     public Juego() {
         this.factory = new WaldosFactory();
@@ -84,7 +84,6 @@ public class Juego {
         List<IPersonaje> list = Arrays.asList(personajes);
         Collections.shuffle(list);
         for (IPersonaje personaje : list) {
-            System.out.println("Despiching"+this.positions.get(list.indexOf(personaje)));
             personaje.setBounds(this.positions.get(list.indexOf(personaje)));
         }
     }
@@ -102,16 +101,16 @@ public class Juego {
         int x,y;
          x = y = 0;
         while (isInYAxis(SIZEY*y)) {  
-            System.out.println("Gola");
             if(!isInXAxis(SIZEX*x)){
                 x = 0;
                 y++;
             }
             //Se pasa una de mas la del final
+            if(!isInYAxis(SIZEY*y))
+                break;
             positions.add(new Rectangle(SIZEX*x, SIZEY*y, SIZEX, SIZEY));
             x++;
         }
-        System.out.println("POOOOOOOOOOOOS"+positions.get(0));
     }
     
     public void setImages(ImageIcon[] images){

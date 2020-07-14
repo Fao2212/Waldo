@@ -26,7 +26,7 @@ public class Waldo extends Personaje{
         System.out.println("Im waldo");
     }
     
-    private void imageSet(){//Tengo que arreglar estos path
+    private void imageSet(){
         setImage(new ImageIcon(ImageLoader.getImage("C:/Users/ACER/Documents/GitHub/Waldo/WaldoGame/src/Waldo Cahracter/"+name+".png")));
     }
     

@@ -4,10 +4,15 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/ACER/Documents/GitHub/Waldo/WaldoGame/src/waldogame/Stage.java</file>
+            <file>file:/C:/Users/ACER/Documents/GitHub/Waldo/WaldoGame/src/waldogame/Waldo.java</file>
+            <file>file:/C:/Users/ACER/Documents/GitHub/Waldo/WaldoGame/src/GUI/LabelPersonaje.java</file>
             <file>file:/C:/Users/ACER/Documents/GitHub/Waldo/WaldoGame/src/WaldoConfig/WaldoConfig.java</file>
             <file>file:/C:/Users/ACER/Documents/GitHub/Waldo/WaldoGame/src/waldogame/Juego.java</file>
             <file>file:/C:/Users/ACER/Documents/GitHub/Waldo/WaldoGame/src/Controller/Controller.java</file>
             <file>file:/C:/Users/ACER/Documents/GitHub/Waldo/WaldoGame/src/GUI/Pantalla.java</file>
+            <file>file:/C:/Users/ACER/Documents/GitHub/Waldo/WaldoGame/src/waldogame/WaldosFactory.java</file>
+            <file>file:/C:/Users/ACER/Documents/GitHub/Waldo/WaldoGame/src/waldogame/Personaje.java</file>
+            <file>file:/C:/Users/ACER/Documents/GitHub/Waldo/WaldoGame/src/waldogame/WaldoGame.java</file>
         </group>
     </open-files>
 </project-private>

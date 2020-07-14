@@ -1,2 +1,7 @@
-#Mon Jul 13 18:02:22 CST 2020
-C\:\\Users\\ACER\\Documents\\GitHub\\Waldo\\WaldoGame\\src\\FondosWaldo\\playa1.png=0,220,800,300
+#Tue Jul 14 17:08:01 CST 2020
+C\:\\Users\\ACER\\Documents\\GitHub\\Waldo\\WaldoGame\\src\\FondosWaldo\\estacion.png=0,280,545,214
+C\:\\Users\\ACER\\Documents\\GitHub\\Waldo\\WaldoGame\\src\\FondosWaldo\\Muelle.png=356,222,440,269
+C\:\\Users\\ACER\\Documents\\GitHub\\Waldo\\WaldoGame\\src\\FondosWaldo\\espacio.png=0,220,362,249
+C\:\\Users\\ACER\\Documents\\GitHub\\Waldo\\WaldoGame\\src\\FondosWaldo\\cocina.png=222,275,379,160
+C\:\\Users\\ACER\\Documents\\GitHub\\Waldo\\WaldoGame\\src\\FondosWaldo\\playa1.png=0,190,800,300
+C\:\\Users\\ACER\\Documents\\GitHub\\Waldo\\WaldoGame\\src\\FondosWaldo\\Jungla.png=0,270,800,240
