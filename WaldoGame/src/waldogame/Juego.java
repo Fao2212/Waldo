@@ -27,10 +27,25 @@ public class Juego {
     private ArrayList<Rectangle> positions;
     private int SIZEY = 78;
     private int SIZEX = 40;
+    private int encontrados;
+    private final int AENCONTRAR = 5;
 
     public Juego() {
         this.factory = new WaldosFactory();
         this.positions = new ArrayList<>();
+        this.encontrados = 0;
+    }
+    
+    public int getEncontrados(){
+        return this.encontrados;
+    }
+    
+    public boolean condicionDeVictoria(){
+        return this.encontrados == AENCONTRAR;
+    }
+    
+    public void sumarEncontrado(){
+        this.encontrados++;
     }
     
     public ImageIcon[] getImages(){
@@ -128,4 +143,5 @@ public class Juego {
         System.out.println(y < mapBounds.height);
        return y < mapBounds.height;
     }
+    
 }

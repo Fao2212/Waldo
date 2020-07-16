@@ -17,6 +17,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import waldogame.Temporizador;
 import waldogame.Waldo;
 
 /**
@@ -27,6 +29,7 @@ public class Controller implements MouseListener,ActionListener{//Los labels tie
     
     Juego juego;
     Pantalla pantalla;
+    Temporizador temporizador;
 
     public Controller() {
     }
@@ -48,7 +51,6 @@ public class Controller implements MouseListener,ActionListener{//Los labels tie
     }
     
     public void setearImagenes(){//Para la pantalla
-        //Meter todas las imagenes del directiorio character
         ImageIcon[] test = WaldoConfig.personajesDisponibles();
         juego.setImages(test);
     }
@@ -79,6 +81,7 @@ public class Controller implements MouseListener,ActionListener{//Los labels tie
         pintarPantalla();
         pantalla.agregarListeners(this);
         pantalla.setVisible(true);
+        initTemporizador();
     }
 
     @Override
@@ -87,7 +90,9 @@ public class Controller implements MouseListener,ActionListener{//Los labels tie
         p.personaje.charAction();
         if(isWaldo(p.personaje)){
             pintarWaldo(p);
+            juego.sumarEncontrado();
         }
+        condicionDeVictoria();
     }
 
     @Override
@@ -128,11 +133,28 @@ public class Controller implements MouseListener,ActionListener{//Los labels tie
                     pintarWaldo(label);
                 }
             }
+            JOptionPane.showMessageDialog(pantalla, "Perdiste");
         }
         if (source.equals(pantalla.jButton3)) {
             pantalla.dispose();
             initGame();
         }
     }
+    
+    public void condicionDeVictoria(){
+        if(this.juego.condicionDeVictoria()){
+            JOptionPane.showMessageDialog(pantalla, "Ganaste");
+        }
+    }
    
+    
+    public void initTemporizador(){
+        this.temporizador = new Temporizador(this);
+        this.temporizador.start();
+    }
+
+    public void updateTime() {
+        pantalla.setTime(temporizador.getTiempo());
+    }
 }
+ 
